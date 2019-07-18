@@ -18,6 +18,43 @@
 import Foundation
 
 /**
+A Config object that setups Strava specific configuration parameters
+ 
+ */
+open class StravaConfig: Config {
+    /**
+     Init a Strava configuration.
+     :param: clientId OAuth2 credentials an unique string that is generated in the OAuth2 provider Developers Console.
+     :param: clientSecret OAuth2 credentials an unique string that is generated in the OAuth2 provider Developers Console.
+     :param: scopes an array of scopes the app is asking access to.
+     :param: accountId this unique id is used by AccountManager to identify the OAuth2 client.
+     :param: isOpenIDConnect to identify if fetching id information is required.
+     */
+    public init(clientId: String, scopes: [String], audienceId: String? = nil, accountId: String? = nil, isOpenIDConnect: Bool = false) {
+        let bundleString = Bundle.main.bundleIdentifier ?? "google"
+        super.init(base: "https://accounts.google.com",
+                   authzEndpoint: "o/oauth2/v2/auth",
+                   redirectURL: "\(bundleString):/oauth2Callback",
+            accessTokenEndpoint: "o/oauth2/token",
+            clientId: clientId,
+            audienceId: audienceId,
+            refreshTokenEndpoint: "o/oauth2/token",
+            revokeTokenEndpoint: "o/oauth2/revoke",
+            isOpenIDConnect: isOpenIDConnect,
+            userInfoEndpoint: isOpenIDConnect ? "https://www.googleapis.com/plus/v1/people/me/openIdConnect" : nil,
+            scopes: scopes,
+            accountId: accountId
+        )
+        
+        // Add openIdConnect scope
+        if self.isOpenIDConnect {
+            self.scopes += ["openid", "email", "profile"]
+        }
+    }
+}
+
+
+/**
 A Config object that setups Facebook specific configuration parameters.
 */
 open class FacebookConfig: Config {
