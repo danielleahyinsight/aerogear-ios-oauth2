@@ -24,47 +24,47 @@ open class Config {
     /**
     Applies the baseURL to the configuration.
     */
-    open let baseURL: String
+    public let baseURL: String
 
     /**
     Applies the "callback URL" once request token issued.
     */
-    open let redirectURL: String
+    public let redirectURL: String
 
     /**
     Applies the "authorization endpoint" to the request token.
     */
-    open var authzEndpoint: String
+    public var authzEndpoint: String
 
     /**
     Applies the "access token endpoint" to the exchange code for access token.
     */
-    open var accessTokenEndpoint: String
+    public var accessTokenEndpoint: String
 
     /**
     Endpoint for request to invalidate both accessToken and refreshToken.
     */
-    open let revokeTokenEndpoint: String?
+    public let revokeTokenEndpoint: String?
 
     /**
     Endpoint for request a refreshToken.
     */
-    open let refreshTokenEndpoint: String?
+    public let refreshTokenEndpoint: String?
 
     /**
     Endpoint for OpenID Connect to get user information.
     */
-    open let userInfoEndpoint: String?
+    public let userInfoEndpoint: String?
 
     /**
     Boolean to indicate whether OpenID Connect on authorization code grant flow is used.
     */
-    open var isOpenIDConnect: Bool
+    public var isOpenIDConnect: Bool
 
     /**
     Applies the various scopes of the authorization.
     */
-    open var scopes: [String]
+    public var scopes: [String]
 
     var scope: String {
         get {
@@ -84,12 +84,12 @@ open class Config {
     /**
     Applies the "client id" obtained with the client registration process.
     */
-    open let clientId: String
+    public let clientId: String
 
     /**
     Applies the "client secret" obtained with the client registration process.
     */
-    open let clientSecret: String?
+    public let clientSecret: String?
 
     /**
     Applies the "audience" obtained with the client registration process.
@@ -100,7 +100,7 @@ open class Config {
     Account id is used with AccountManager to store tokens. AccountId is defined by the end-user
     and can be any String. If AccountManager is not used, this field is optional.
     */
-    open var accountId: String?
+    public var accountId: String?
 
     /**
     Enum to denote what kind of webView to use.
@@ -114,12 +114,12 @@ open class Config {
     /**
     Set type of webView to use during OAuth flow.
     */
-    open var webView: WebViewType = WebViewType.externalSafari
+    public var webView: WebViewType = WebViewType.externalSafari
 
     /**
     A handler to allow the webview to be pushed onto the navigation controller
     */
-    open var webViewHandler: ((UIViewController, _ completionHandler: (AnyObject?, NSError?) -> Void) -> ()) = {
+    public var webViewHandler: ((UIViewController, _ completionHandler: (AnyObject?, NSError?) -> Void) -> ()) = {
         (webView, completionHandler) in
         UIApplication.shared.keyWindow?.rootViewController?.present(webView, animated: true, completion: nil)
     }
