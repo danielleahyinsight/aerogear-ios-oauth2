@@ -30,18 +30,18 @@ open class StravaConfig: Config {
      :param: accountId this unique id is used by AccountManager to identify the OAuth2 client.
      :param: isOpenIDConnect to identify if fetching id information is required.
      */
-    public init(clientId: String, scopes: [String], audienceId: String? = nil, accountId: String? = nil, isOpenIDConnect: Bool = false) {
-        let bundleString = Bundle.main.bundleIdentifier ?? "google"
-        super.init(base: "https://accounts.google.com",
-                   authzEndpoint: "o/oauth2/v2/auth",
-                   redirectURL: "\(bundleString):/oauth2Callback",
-            accessTokenEndpoint: "o/oauth2/token",
+    public init(clientId: String, scopes: [String], audienceId: String? = nil, accountId: String? = nil, redirectURI:String,  isOpenIDConnect: Bool = false) {
+       
+        super.init(base: "",
+                   authzEndpoint: "https://www.strava.com/api/v3/oauth/authorize",
+                   redirectURL: "\(redirectURI)",
+            accessTokenEndpoint: "https://www.strava.com/api/v3/oauth/token",
             clientId: clientId,
             audienceId: audienceId,
-            refreshTokenEndpoint: "o/oauth2/token",
-            revokeTokenEndpoint: "o/oauth2/revoke",
+            refreshTokenEndpoint: "https://www.strava.com/api/v3/oauth/token",
+            revokeTokenEndpoint: "https://www.strava.com/api/v3/oauth/token",
             isOpenIDConnect: isOpenIDConnect,
-            userInfoEndpoint: isOpenIDConnect ? "https://www.googleapis.com/plus/v1/people/me/openIdConnect" : nil,
+            userInfoEndpoint: isOpenIDConnect ? "" : nil,
             scopes: scopes,
             accountId: accountId
         )
