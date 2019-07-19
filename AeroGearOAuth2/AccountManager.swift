@@ -271,6 +271,19 @@ open class AccountManager {
     open class func addGoogleAccount(config: GoogleConfig) -> OAuth2Module {
         return addAccountWith(config: config, moduleClass: OAuth2Module.self)
     }
+    
+    
+    /**
+     Convenient method to retrieve a Strava OAuth2 module ready to be used.
+     
+     :param: config a google configuration object. See StravaConfig.
+     
+     :returns: a strava OAuth2 module.
+     */
+    open class func addStravaAccount(config: StravaConfig) -> OAuth2Module {
+        return addAccountWith(config: config, moduleClass: OAuth2Module.self)
+    }
+    
 
     /**
     Convenient method to retrieve a Keycloak OAuth2 module ready to be used.
