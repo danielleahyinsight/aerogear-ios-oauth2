@@ -30,7 +30,7 @@ open class StravaConfig: Config {
      :param: accountId this unique id is used by AccountManager to identify the OAuth2 client.
      :param: isOpenIDConnect to identify if fetching id information is required.
      */
-    public init(clientId: String, scopes: [String], audienceId: String? = nil, accountId: String? = nil, redirectURI:String,  isOpenIDConnect: Bool = false) {
+    public init(clientId: String, clientSecret: String, scopes: [String], audienceId: String? = nil, accountId: String? = nil, redirectURI:String,  isOpenIDConnect: Bool = false) {
        
         super.init(base: "",
                    authzEndpoint: "https://www.strava.com/api/v3/oauth/authorize",
@@ -43,6 +43,7 @@ open class StravaConfig: Config {
             isOpenIDConnect: isOpenIDConnect,
             userInfoEndpoint: isOpenIDConnect ? "" : nil,
             scopes: scopes,
+            clientSecret: clientSecret,
             accountId: accountId
         )
         
